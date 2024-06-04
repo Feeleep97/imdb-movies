@@ -30,23 +30,38 @@ export default function Movies() {
         const moviesArray = moviesData as Array<IImdbMovieType>
         removeDuplicateMovies(moviesArray);
     }, [])
-    
+
+    // handling favourite movie -- not finished
+    // function handleFavouriteMovieSelected(movieId:number) {
+    //     updateFavouriteMovie(movieId,true);   
+    // }
+
+    // const updateFavouriteMovie = (movieId:number, isFavourite:boolean) => {
+    //     setMovies(movies.map(movie =>
+    //         movie.id === movieId ? { ...movie, inFavourites: isFavourite } : movie
+    //     ));
+    //    }; 
+
     function removeDuplicateMovies(moviesArray:Array<IImdbMovieType>) {
-        //unit test
         const jsonObject = moviesArray.map(JSON.stringify);
         const uniqueSet = new Set(jsonObject);
         const uniqueArray = Array.from(uniqueSet).map(JSON.parse);
+        // sort filter by imdb rating
+        uniqueArray.sort((a,b) => 
+            b.ratings[0].rating - a.ratings[0].rating 
+        );
         setMovies(uniqueArray);
     }
 
     return (
       <div>
-        Movie list
-        <div style={{display:'flex', flexDirection:'row', flexWrap:'wrap'}}>{movies.map((movie)=> {
+        <h1>IMDB Movies</h1>
+        <div style={{display:'flex', flexDirection:'row', flexWrap:'wrap', justifyContent:'space-around'}}>{movies.map((movie)=> {
             return(
             <MovieCardComponent 
             key={movie.id} 
             movieCardProps={movie}
+            // handleFavouriteMovieSelection={handleFavouriteMovieSelected}
             >
             </MovieCardComponent>)
         })}</div>
