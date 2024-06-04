@@ -4,14 +4,24 @@
  width: 250px;
  height: 500px;
  border: 1px solid green;
+ border-radius: 5px;
+ margin: 10px 0;
+ &:hover {
+    box-shadow: 0 0 5px 5px green;
+ }
 }
 
-// .movie-card-info {
+.movie-card-info {
+padding: 5px;
+}
 
-// }
-// .movie-card-image-wrapper {
-
-// }
+.movie-card-image-wrapper {
+    max-height: 372px;
+    min-height: 372px;
+    &>img {
+        height: 100%;
+    }
+}
 
 // .movie-card-title{
 
