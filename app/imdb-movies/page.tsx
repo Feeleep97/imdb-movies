@@ -31,16 +31,16 @@ export default function Movies() {
         removeDuplicateMovies(moviesArray);
     }, [])
 
-    // handling favourite movie -- not finished
-    // function handleFavouriteMovieSelected(movieId:number) {
-    //     updateFavouriteMovie(movieId,true);   
-    // }
+    function handleFavouriteMovieSelected(movieId:number) {
+        updateFavouriteMovie(movieId,true);   
+    }
 
-    // const updateFavouriteMovie = (movieId:number, isFavourite:boolean) => {
-    //     setMovies(movies.map(movie =>
-    //         movie.id === movieId ? { ...movie, inFavourites: isFavourite } : movie
-    //     ));
-    //    }; 
+    function updateFavouriteMovie (movieId:number, isFavourite:boolean){
+        const addFavouriteMovieToMoviesArray = movies.map((movie) => {
+           return movie.id === movieId ? {...movie, inFavourites:isFavourite} : movie
+        })
+        setMovies(addFavouriteMovieToMoviesArray)
+       }; 
 
     function removeDuplicateMovies(moviesArray:Array<IImdbMovieType>) {
         const jsonObject = moviesArray.map(JSON.stringify);
@@ -61,7 +61,7 @@ export default function Movies() {
             <MovieCardComponent 
             key={movie.id} 
             movieCardProps={movie}
-            // handleFavouriteMovieSelection={handleFavouriteMovieSelected}
+            handleFavouriteMovieSelection={handleFavouriteMovieSelected}
             >
             </MovieCardComponent>)
         })}</div>
