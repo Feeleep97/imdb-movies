@@ -32,14 +32,14 @@ export default function Movies() {
     }, [])
 
     function handleFavouriteMovieSelected(movieId:number) {
-        updateFavouriteMovie(movieId,true);   
+        updateFavouriteMovie(movieId);   
     }
 
-    function updateFavouriteMovie (movieId:number, isFavourite:boolean){
+    function updateFavouriteMovie (movieId:number){
         const addFavouriteMovieToMoviesArray = movies.map((movie) => {
-           return movie.id === movieId ? {...movie, inFavourites:isFavourite} : movie
+           return movie.id === movieId ? {...movie, inFavourites: !movie.inFavourites} : movie
         })
-        setMovies(addFavouriteMovieToMoviesArray)
+        setMovies(addFavouriteMovieToMoviesArray);
        }; 
 
     function removeDuplicateMovies(moviesArray:Array<IImdbMovieType>) {
