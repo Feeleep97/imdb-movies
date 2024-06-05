@@ -11,10 +11,10 @@ export default function MovieCardComponent({movieCardProps,handleFavouriteMovieS
                 <img src={posterUrl} alt={movieCardProps.title} />
             </div>
             <div className="movie-card-info">
-                <button onClick={() => handleFavouriteMovieSelection(movieCardProps.id)}> Favourites </button> -- in progress
-                <div className="movie-card-title">title: {movieCardProps.title}</div>
+                <button className="movie-card-button" onClick={() => handleFavouriteMovieSelection(movieCardProps.id)}> {movieCardProps.inFavourites ? 'Remove from favourites' : 'Add to favourites'} </button> 
+                <div className="movie-card-title">{movieCardProps.title}</div>
                 <div className="movie-card-release-date">Release date: {movieCardProps.release_date ? movieCardProps.release_date : 'Not released yet'}</div>
-                <div className="movie-card-favourites">In favourites: {movieCardProps.inFavourites ? 'true' : 'false'}</div>
+                <div className="movie-card-favourites">{movieCardProps.inFavourites ? 'In favourites' : ''}</div>
             </div>
         </div>
     )
